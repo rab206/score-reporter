@@ -1,0 +1,11 @@
+StoredFile
+    name Text
+    fileType FileType
+    contentType Text
+    content ByteString
+    personId PersonId
+    lastUpdated UTCTime
+
+Person
+    name Text
+    dateAdded UTCTime

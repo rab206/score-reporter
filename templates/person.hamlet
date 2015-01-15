@@ -1,0 +1,14 @@
+<h2>Job Applicants - #{name} - #{show time}
+
+<h2>Files Uploaded
+$if null files
+  <p>No files have been uploaded yet.
+$else
+   File Name | File Type | Time Uploaded
+  <ul>
+    $forall (Entity fileId (StoredFile fileName fileType _ _ _ fileTime)) <- files
+      <li>
+        <a href=@{PreviewR fileId}>#{fileName}
+        | #{show fileTime}
+
+<a href=@{DeletePersonR personId}>Delete #{name}

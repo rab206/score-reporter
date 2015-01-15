@@ -1,0 +1,6 @@
+/                            HomeR            GET POST
+/person/#PersonId            PersonR          GET
+/person/#PersonId/delete     DeletePersonR    GET
+/file/#StoredFileId          PreviewR         GET POST
+/file/#StoredFileId/download DownloadR        GET
+/file/#StoredFileId/delete   DeleteFileR      GET

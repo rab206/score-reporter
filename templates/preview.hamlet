@@ -1,0 +1,13 @@
+<a href=@{HomeR}>Home
+<a href=@{PersonR personId}>#{name}
+
+<h1>#{filename}
+<a href=@{DownloadR fileId}>Download
+<a href=@{DeleteFileR fileId}>Delete
+<p>
+  ^{previewBlock}
+
+<h2>Update #{show fileType}
+<form method=post action=@{PreviewR fileId} enctype=#{formEncType}>
+  ^{formWidget}
+  <input type="submit" value="Upload">

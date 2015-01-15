@@ -1,0 +1,17 @@
+<h2>Job Applicants
+$if null people
+  <p>No people have applied yet.
+$else
+   Person Name | Time Uploaded
+  <ul>
+    $forall (Entity personId (Person name time)) <- people
+      <li>
+        <a href=@{PersonR personId}>#{name}
+        | #{show time}
+        <a href=@{DeletePersonR personId}>Delete #{name}
+
+
+<h2>Upload your cv and resume
+<form method=post action=@{HomeR} enctype=#{formEncType}>
+  ^{formWidget}
+  <input type="submit" value="Upload">
