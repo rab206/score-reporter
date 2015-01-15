@@ -1,23 +1,23 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE QuasiQuotes #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE TemplateHaskell   #-}
 
 module Handler.PreviewFIle where
 
-import Control.Applicative
-import Control.Exception hiding (Handler)
-import qualified Data.ByteString as SB
-import Data.Time (UTCTime, getCurrentTime)
-import Data.Default
-import Data.Text (Text)
-import qualified Data.Text as Text
-import qualified Data.Text.Encoding as Text
-import Text.Blaze
-import Yesod
-import Yesod.Default.Util
+import           Control.Applicative
+import           Control.Exception   hiding (Handler)
+import qualified Data.ByteString     as SB
+import           Data.Default
+import           Data.Text           (Text)
+import qualified Data.Text           as Text
+import qualified Data.Text.Encoding  as Text
+import           Data.Time           (UTCTime, getCurrentTime)
+import           Text.Blaze
+import           Yesod
+import           Yesod.Default.Util
 
-import Foundation
-import Model
+import           Foundation
+import           Model
 
 getPreviewR :: Key StoredFile -> Handler Html
 getPreviewR fileId = do
@@ -54,8 +54,8 @@ postPreviewR fileId = do
     redirect HomeR
 
 data FormFile = FormFile{
-      file     :: FileInfo
-    , time     :: UTCTime
+      file :: FileInfo
+    , time :: UTCTime
    }
 uploadForm :: Html -> MForm Handler (FormResult FormFile, Widget)
 uploadForm = renderDivs $ FormFile

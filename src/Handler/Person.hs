@@ -1,23 +1,23 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes       #-}
 {-# LANGUAGE TemplateHaskell   #-}
 {-# LANGUAGE TypeFamilies      #-}
-{-# LANGUAGE QuasiQuotes #-}
 
 module Handler.Person where
 
-import Control.Exception hiding (Handler)
+import           Control.Exception  hiding (Handler)
 
-import Data.Default
-import Data.Text (Text)
-import Data.Time (UTCTime, getCurrentTime)
-import qualified Data.Text as Text
+import           Data.Default
+import           Data.Text          (Text)
+import qualified Data.Text          as Text
 import qualified Data.Text.Encoding as Text
-import Text.Blaze
-import Yesod
-import Yesod.Default.Util
+import           Data.Time          (UTCTime, getCurrentTime)
+import           Text.Blaze
+import           Yesod
+import           Yesod.Default.Util
 
-import Foundation
-import Model
+import           Foundation
+import           Model
 
 getPersonR :: PersonId -> Handler Html
 getPersonR personId = do

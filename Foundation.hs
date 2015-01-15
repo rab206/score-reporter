@@ -1,24 +1,24 @@
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE ScopedTypeVariables   #-}
 {-# LANGUAGE TemplateHaskell       #-}
 {-# LANGUAGE TypeFamilies          #-}
 
 module Foundation where
 
-import           Data.Conduit
-import           Data.Conduit.Binary
 import           Control.Applicative
 import           Control.Monad.Trans.Resource
-import           Data.Default
-import           Data.Text            (Text)
-import           Database.Persist.Sql
 import qualified Data.ByteString              as S
 import qualified Data.ByteString.Lazy         as L
+import           Data.Conduit
+import           Data.Conduit.Binary
+import           Data.Default
+import           Data.Text                    (Text)
+import           Data.Time                    (UTCTime)
+import           Database.Persist.Sql
 import           Text.Hamlet
 import           Yesod
 import           Yesod.Default.Util
-import           Data.Time (UTCTime)
 
 import           Config
 import           Model
@@ -38,7 +38,7 @@ instance RenderMessage App FormMessage where
 
 instance YesodPersist App where
   type YesodPersistBackend App = SqlBackend
-  runDB action = defaultRunDB (const persistConfig) connPool action
+  runDB = defaultRunDB (const persistConfig) connPool
 
 instance YesodPersistRunner App where
   getDBRunner = defaultGetDBRunner connPool
@@ -65,8 +65,8 @@ deletePerson personId = runDB $ delete personId
 updateFile :: StoredFileId -> FileInfo -> Handler ()
 updateFile fileId fi = do
     bytes <- extractBytes fi
-    runDB $ update fileId [StoredFileName =. (fileName fi),
-                           StoredFileContentType =. (fileContentType fi),
+    runDB $ update fileId [StoredFileName =. fileName fi,
+                           StoredFileContentType =. fileContentType fi,
                            StoredFileContent =. bytes]
 
 deleteFile :: StoredFileId -> Handler ()

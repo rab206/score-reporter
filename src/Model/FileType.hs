@@ -1,13 +1,13 @@
+{-# LANGUAGE TemplateHaskell            #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE GADTs                      #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE GADTs #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE OverloadedStrings          #-}
+{-# LANGUAGE TypeFamilies               #-}
 
 module Model.FileType where
 
-import Database.Persist.TH
+import           Database.Persist.TH
 
 data FileType = CV | Resume
     deriving (Show, Read, Eq)
