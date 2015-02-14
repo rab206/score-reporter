@@ -1,5 +1,9 @@
-/                            HomeR            GET
-/v0.1/tournament               PostTournamentR POST
-/v0.1/tournaments              TournamentsR GET
-/v0.1/tournament/#TournamentId TournamentR GET
-/v0.1/tournament/#TournamentId/games TournamentGamesR GET POST
+/                                             HomeR            GET
+/v0.1/tournament                              PostTournamentR POST
+/v0.1/tournaments                             TournamentsR GET
+/v0.1/tournament/#TournamentId                TournamentR GET
+/v0.1/tournament/#TournamentId/games          GamesR GET POST
+/v0.1/tournament/#TournamentId/teams          TeamsR GET POST
+/v0.1/tournament/#TournamentId/game/#GameId   GameR GET PUT DELETE
+/v0.1/game/#GameId/score                      PostScoreR POST
+/v0.1/game/#GameId/score/#ScoreId             ScoreR GET

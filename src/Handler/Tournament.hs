@@ -7,9 +7,13 @@ import Import
 -- used for JSON values. We return our result as a JSON object, and place
 -- our integral result under the "value" key.
 getTournamentR :: TournamentId -> Handler Value
-getTournamentR id = do
-  t <- runDB $ get404 id
-  return $ object ["tournament" .= t]
+getTournamentR tid = do
+  t <- runDB $ get404 tid
+  gs <- runDB $ selectList [GameTournamentId ==. tid] []
+  teams <- runDB $ selectList [TeamTournamentId ==. tid] [Asc TeamSeeding]
+  return $ object ["tournament" .= t,
+                    "games" .= gs,
+                    "teams" .= teams]
 
 postPostTournamentR :: Handler ()
 postPostTournamentR = do

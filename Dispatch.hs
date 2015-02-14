@@ -10,7 +10,10 @@ import           Foundation
 import           Handler.Home
 import           Handler.Tournament
 import           Handler.Tournaments
-import           Handler.TournamentGames
+import           Handler.Game
+import           Handler.Games
+import           Handler.Score
+import           Handler.Teams
 
 
 mkYesodDispatch "App" resourcesApp

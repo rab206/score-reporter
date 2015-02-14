@@ -31,6 +31,6 @@ Team json
 Score json
     gameId GameId
     teamId TeamId
-    scorer Text
-    assister Text
+    scorer Text Maybe
+    assister Text Maybe
     time UTCTime

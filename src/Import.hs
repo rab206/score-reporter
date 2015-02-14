@@ -13,6 +13,7 @@ module Import
 
 import           Data.Default
 import           Foundation          as X
+import           GHC.Generics        as X
 import           Model               as X
 import           Data.List           as X (nub)
 import           Data.Text           as X (pack, Text)
