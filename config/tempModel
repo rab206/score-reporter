@@ -1,0 +1,55 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TypeFamilies #-}
+module Model where
+
+import Data.ByteString (ByteString)
+import Data.Text (Text)
+import Database.Persist.Quasi
+
+import Data.Time (UTCTime)
+import Control.Monad (mzero)
+
+import Control.Applicative as Import (pure, (<$>), (<*>))
+
+import Yesod
+
+share [mkPersist sqlSettings, mkMigrate "migrateAll"]
+    $(persistFileWith lowerCaseSettings "config/models")
+
+instance ToJSON (Entity Tournament) where
+    toJSON (Entity tid t) = object
+        [ "id"      .= (String $ toPathPiece tid)
+        , "name"    .= tournamentName t
+        , "startDate"   .= tournamentStartDate t
+        , "endDate" .= tournamentEndDate t
+        , "location"   .= tournamentLocation t
+        , "tournamentDirector" .= toJSON $ get $ tournamentTournamentDirector t
+        , "pitchQty"   .= tournamentPitchQty t
+        , "website" .= tournamentWebsite t
+        , "description"   .= tournamentDescription t
+        ]
+
+instance FromJSON Tournament where
+    parseJSON (Object o) = Tournament
+        <$> o .: "name"
+        <*> o .: "startDate"
+        <*> o .: "endDate"
+        <*> o .: "location"
+        <*> o .: "tournamentDirector"
+        <*> o .: "pitchQty"
+        <*> o .: "website"
+        <*> o .: "description"
+    parseJSON _ = mzero
+
+instance ToJSON (Entity Person) where
+    toJSON (Entity pid p) = object
+        [ "id"      .= (String $ toPathPiece pid)
+        , "name"    .= personName p
+        , "phone"   .= personPhone p
+        , "email"   .= personEmail p
+        ]

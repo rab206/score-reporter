@@ -1,6 +1,5 @@
-/                            HomeR            GET POST
-/person/#PersonId            PersonR          GET
-/person/#PersonId/delete     DeletePersonR    GET
-/file/#StoredFileId          PreviewR         GET POST
-/file/#StoredFileId/download DownloadR        GET
-/file/#StoredFileId/delete   DeleteFileR      GET
+/                            HomeR            GET
+/v0.1/tournament               PostTournamentR POST
+/v0.1/tournaments              TournamentsR GET
+/v0.1/tournament/#TournamentId TournamentR GET
+/v0.1/tournament/#TournamentId/games TournamentGamesR GET POST

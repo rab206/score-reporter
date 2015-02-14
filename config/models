@@ -1,11 +1,36 @@
-StoredFile
+Person json
     name Text
-    fileType FileType
-    contentType Text
-    content ByteString
-    personId PersonId
-    lastUpdated UTCTime
+    phone Text
+    email Text
 
-Person
+Tournament json
     name Text
-    dateAdded UTCTime
+    startDate UTCTime
+    endDate UTCTime
+    location Text
+    tournamentDirector PersonId
+    pitchQty Int
+    website Text
+    description Text
+
+Game json
+    tournamentId TournamentId
+    pitchNumber Int
+    time UTCTime
+    seed1 Int
+    seed2 Int
+    UniqueGame tournamentId time pitchNumber
+
+Team json
+    tournamentId TournamentId
+    name Text
+    twitterHandle Text Maybe
+    seeding Int
+    UniqueTeam tournamentId seeding
+
+Score json
+    gameId GameId
+    teamId TeamId
+    scorer Text
+    assister Text
+    time UTCTime

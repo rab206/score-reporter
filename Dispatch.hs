@@ -7,11 +7,10 @@ module Dispatch where
 import           Yesod
 
 import           Foundation
-import           Handler.DeleteFile
-import           Handler.DeletePerson
-import           Handler.Download
 import           Handler.Home
-import           Handler.Person
-import           Handler.PreviewFIle
+import           Handler.Tournament
+import           Handler.Tournaments
+import           Handler.TournamentGames
+
 
 mkYesodDispatch "App" resourcesApp

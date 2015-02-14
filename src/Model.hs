@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE GADTs #-}
@@ -11,11 +12,11 @@ import Data.Text (Text)
 import Database.Persist.Quasi
 
 import Data.Time (UTCTime)
+import Control.Monad (mzero)
+
+import Control.Applicative as Import (pure, (<$>), (<*>))
 
 import Yesod
-
-import Model.FileType
-
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
