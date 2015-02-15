@@ -1,0 +1,24 @@
+Default: &defaults
+    user: haskellers
+    password: haskellers
+    host: localhost
+    port: 5432
+    database: haskellers
+    poolsize: 10
+
+Development:
+    <<: *defaults
+
+Testing:
+    database: backoffice_test
+    <<: *defaults
+
+Staging:
+    database: backoffice_staging
+    poolsize: 100
+    <<: *defaults
+
+Production:
+    database: backoffice_production
+    poolsize: 100
+    <<: *defaults

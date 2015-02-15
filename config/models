@@ -8,7 +8,7 @@ Tournament json
     startDate UTCTime
     endDate UTCTime
     location Text
-    tournamentDirector PersonId
+    tournamentDirector Int
     pitchQty Int
     website Text
     description Text

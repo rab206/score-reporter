@@ -13,9 +13,6 @@ import Database.Persist.Quasi
 
 import Data.Time (UTCTime)
 
-
-
-
 import Yesod
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"]
