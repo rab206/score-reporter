@@ -14,6 +14,12 @@ getTournamentR tid = do
   return $ object ["tournament" .= t,
                     "games" .= gs,
                     "teams" .= teams]
+                    
+putTournamentR :: TournamentId -> Handler Value
+putTournamentR tid = do
+    tournament <- requireJsonBody :: Handler Tournament
+    runDB $ replace tid tournament
+    sendResponseStatus status200 ("UPDATED" :: Text)
 
 postPostTournamentR :: Handler ()
 postPostTournamentR = do
