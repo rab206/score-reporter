@@ -43,12 +43,12 @@ disableForeignKeys conn = Sqlite.prepare conn "PRAGMA foreign_keys = ON;" >>= vo
 
 main :: IO ()
 main = do
---  sqliteConn <- rawConnection (sqlDatabase $ persistConfig)
---  disableForeignKeys sqliteConn
---  pool <- runStdoutLoggingT $ createSqlPool
---        (wrapConnection sqliteConn)
---        (sqlPoolSize $ persistConfig)
-  pool <- createPoolConfig persistConfig
-  runResourceT $ runStderrLoggingT $ flip runSqlPool pool
+  sqliteConn <- rawConnection (sqlDatabase $ persistConfig)
+  disableForeignKeys sqliteConn
+  pool <- runStdoutLoggingT $ createSqlPool
+        (wrapConnection sqliteConn)
+        (sqlPoolSize $ persistConfig)
+--  pool <- createPoolConfig persistConfig
+  runResourceT $ runStdoutLoggingT $ flip runSqlPool pool
       $ runMigration migrateAll
   warpEnv $ App pool

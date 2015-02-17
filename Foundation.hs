@@ -60,7 +60,9 @@ instance FromJSON ScoreAttrs
 
 insertGames :: TournamentId -> [GameAttrs] -> [Game] -> Handler ()
 insertGames tid (g:gs) rs = insertGames tid gs (Game tid (pitchNumber g) (time g) (seeding1 g) (seeding2 g):rs)
-insertGames _ [] rs = runDB $ insertMany_ rs
+insertGames _ [] rs = do
+  _ <- runDB $ insertMany rs
+  return ()
 
 insertTeams :: TournamentId -> [TeamAttrs] -> [Team] -> Handler ()
 insertTeams tid (t:ts) rs = insertTeams tid ts (Team tid (name t) (twitterHandle t) (seeding t):rs)
